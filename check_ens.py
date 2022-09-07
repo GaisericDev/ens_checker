@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 from web3 import Web3
 from ens import ENS
 
-from name_to_addr import name_to_addr
-from get_balance import get_balance
-from get_ens_names import get_ens_names
+from utils.name_to_addr import name_to_addr
+from utils.get_balance import get_balance
+from utils.get_ens_names import get_ens_names
 
 load_dotenv()
 
@@ -34,11 +34,11 @@ def main():
             # if address is available it will be a NoneType, add to list corresponding to availability
             available.append(name) if eth_address == None else not_available.append(name)
     # write list of available ens names to txt file
-    with open(f"{CWD}/available.txt", "w") as f:
+    with open(f"{CWD}/output/available.txt", "w") as f:
         for item in available:
             f.write("%s\n" %item)
     # write list of unavailable ens names to txt file
-    with open(f"{CWD}/not_available.txt", "w") as f:
+    with open(f"{CWD}/output/not_available.txt", "w") as f:
         for item in not_available:
             f.write("%s\n" %item)
     
