@@ -33,8 +33,8 @@ def main():
     if(WEB3.isConnected()):
         print("connected")
         # loop through all ens names in the list 
-        for index in range(10):
-            name = ens_names[index]
+        for name in ens_names:
+            print(name)
             try:
                 # add .eth to the name
                 name += ".eth"
@@ -45,7 +45,7 @@ def main():
                 # if address is not claimed it will be "0x0000000000000000000000000000000000000000"
                 not_claimed = "0x0000000000000000000000000000000000000000"
                 available.append(name) if eth_address == not_claimed else not_available.append(name)
-                time.sleep(1)
+                time.sleep(0.2)
             except Exception as e:
                 print(e)
                 # if there is an error i.e. reached api limit then we just exit the loop and write all our collected data to file
