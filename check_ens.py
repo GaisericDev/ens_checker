@@ -1,4 +1,5 @@
 import os
+from tabnanny import check
 from dotenv import load_dotenv
 from web3 import Web3
 from ens import ENS
@@ -6,6 +7,7 @@ from ens import ENS
 from name_to_addr import name_to_addr
 from get_balance import get_balance
 from get_ens_names import get_ens_names
+
 load_dotenv()
 
 INFURA_API_KEY = os.getenv("INFURA_API_KEY")
