@@ -45,7 +45,7 @@ def main():
                 # if address is not claimed it will be "0x0000000000000000000000000000000000000000"
                 not_claimed = "0x0000000000000000000000000000000000000000"
                 available.append(name) if eth_address == not_claimed else not_available.append(name)
-                time.sleep(0.1)
+                # time.sleep(0.1)
             except KeyboardInterrupt:
                 # keyboard interrupt, end the loop
                 print("User terminated program, saving file...")
