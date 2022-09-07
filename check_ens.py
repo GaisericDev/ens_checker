@@ -29,8 +29,10 @@ def main():
         for name in ens_names:
             # get eth address
             eth_address = name_to_addr(NS, name)
+            # if address is available it will be a NoneType
             if eth_address == None:
                 data.append(name)
+    # write list of available ens names to txt file
     with open(f"{CWD}/available.txt", "w") as f:
         for item in data:
             f.write("%s\n" %item)
