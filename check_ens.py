@@ -17,7 +17,7 @@ WEB3 = Web3(PROVIDER)
 NS = ENS(PROVIDER)
 
 def main():
-    # object with all ens name data
+    # list with all ens names that are available
     data = []
     # ens names list from i.e. txt file
     ens_names = get_ens_names()
@@ -28,14 +28,8 @@ def main():
         for name in ens_names:
             # get eth address
             eth_address = name_to_addr(NS, name)
-            # get balance in eth
-            balance = WEB3.fromWei(get_balance(WEB3, eth_address), "ether")
-            # create data object and add it to the data list
-            data.append({
-                "name": name,
-                "address": eth_address,
-                "balance": balance
-            })
+            if eth_address == None:
+                data.append(name)
     print(data)
     
 if __name__ == '__main__':
