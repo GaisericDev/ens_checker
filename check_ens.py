@@ -53,7 +53,7 @@ def main():
             except Exception as e:
                 print(e)
                 # if there is an error i.e. reached api limit then we just exit the loop and write all our collected data to file
-                if "is an invalid name" in e:
+                if "is an invalid name" in str(e):
                     # invalid name used, add to not_available and continue
                     not_available.append(name)
                     continue
