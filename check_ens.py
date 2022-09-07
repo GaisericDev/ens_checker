@@ -18,9 +18,11 @@ NS = ENS(PROVIDER)
 CWD = os.getcwd()
 
 def main():
-    # list with all ens names that are available
-    data = []
-    # ens names list from i.e. txt file
+    # list with all ens names that are available, sorted alphabetically - ens names are not case sensitive so no need to remove capitals
+    available = []
+    # list with all unavaible ens names - can come in handy for filtering sets on future attempts as not to perform duplicate searches
+    not_available = []
+    # ens names set from i.e. txt file
     ens_names = get_ens_names()
     # check if we can connect
     if(WEB3.isConnected()):
@@ -29,12 +31,15 @@ def main():
         for name in ens_names:
             # get eth address
             eth_address = name_to_addr(NS, name)
-            # if address is available it will be a NoneType
-            if eth_address == None:
-                data.append(name)
+            # if address is available it will be a NoneType, add to list corresponding to availability
+            available.append(name) if eth_address == None else not_available.append(name)
     # write list of available ens names to txt file
     with open(f"{CWD}/available.txt", "w") as f:
-        for item in data:
+        for item in available:
+            f.write("%s\n" %item)
+    # write list of unavailable ens names to txt file
+    with open(f"{CWD}/not_available.txt", "w") as f:
+        for item in not_available:
             f.write("%s\n" %item)
     
 if __name__ == '__main__':
