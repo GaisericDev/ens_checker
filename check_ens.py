@@ -35,6 +35,10 @@ def main():
         # loop through all ens names in the list 
         for name in ens_names:
             print(name)
+            # names with less than 3 characters not allowed, add to not available to it will be skipped next time and go next in loop
+            if len(name) < 3:
+                not_available.append(name)
+                continue
             try:
                 # add .eth to the name
                 name += ".eth"
