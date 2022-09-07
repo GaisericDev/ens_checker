@@ -15,6 +15,7 @@ INFURA_URL = f"https://mainnet.infura.io/v3/{INFURA_API_KEY}"
 PROVIDER = Web3.HTTPProvider(INFURA_URL)
 WEB3 = Web3(PROVIDER)
 NS = ENS(PROVIDER)
+CWD = os.getcwd()
 
 def main():
     # list with all ens names that are available
@@ -30,7 +31,9 @@ def main():
             eth_address = name_to_addr(NS, name)
             if eth_address == None:
                 data.append(name)
-    print(data)
+    with open(f"{CWD}/available.txt", "w") as f:
+        for item in data:
+            f.write("%s\n" %item)
     
 if __name__ == '__main__':
      main()
